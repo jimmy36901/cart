@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 100%;
+        }
+        .wrap{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: red; */
+        }
+        .title{
+            width: 80%;
+            background-color: gray;
+            display: flex;
+            justify-content: space-between;
+        }
+        .title span{
+            color: white;
+            width: 100px;
+            text-align: center;
+        }
+        .item{
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            border-bottom: 1px solid gray;
+            padding: 20px 0px;
+        }
+        .item img{
+            width: 100px;
+            height: 100px;
+        }
+        .item span{
+            width: 100px;
+        }
+        .subtotal{
+            width: 80%;
+            margin: auto;
+            text-align: end;
+            padding: 20px 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="wrap">
+            <div class="title">
+                <span>商品</span>
+                <span>單價</span>
+                <span>數量</span>
+                <span>總計</span>
+                <span>操作</span>
+            </div>     
+        </div>
+        <div class="item" v-for="(item, index) in itemlist" :key="item.id">
+            <img :src= item.img alt="">
+            <span>{{item.price}}<span>元</span></span>
+            <span>
+                <button @click="plus(item)">+</button>
+                <span>{{item.count}}<span>件</span></span>
+                <button @click="reduce(item)">-</button>
+            </span>
+            <span>{{item.price*item.count}}<span>元</span></span>
+            <button @click="del(index)">刪除</button>
+        </div>
+        <div class="subtotal">{{ totalValue }}<span>元</span></div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    itemlist:[
+                        {
+                        id:'1',
+                        itemname:'上衣',
+                        img: "./cloth-removebg-preview.png",
+                        price: '200',
+                        count:'1',
+                    },
+                        { 
+                        id:'2',
+                        itemname:'褲子',
+                        img: "./pants-removebg-preview.png",
+                        price: '600',
+                        count:'1'
+                        },
+                        { 
+                        id:'3',
+                        itemname:'內褲',
+                        img: "./underwear-removebg-preview.png",
+                        price: '800',
+                        count:'1'
+                        },
+                    ],
+                                                
+                }
+            },
+            methods:{
+                        plus(item){
+                            console.log(item);
+                            item.count++;
+                        },
+                        reduce(item){
+                            console.log(item);
+                            if(item.count>0){
+                            item.count--;
+                            }
+                        },
+                        del(index){
+                            this.itemlist.splice(index,1);
+                        },
+                    },
+            computed: {
+                totalValue() {
+                    let total = 0;
+                    for (let i = 0; i < this.itemlist.length; i++) {
+                        const item = this.itemlist[i];
+                        total += item.price * item.count;
+                    }
+                    return total;
+                }
+            }            
+
+        }).mount("#app")
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
