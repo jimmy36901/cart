@@ -8,6 +8,9 @@
       #app {
         width: 100%;
       }
+      button {
+        user-select: none;
+      }
       .wrap {
         width: 100%;
         display: flex;
@@ -16,7 +19,7 @@
         /* background-color: red; */
       }
       .title {
-        width: 80%;
+        width: 90%;
         background-color: gray;
         display: flex;
         justify-content: space-between;
@@ -27,7 +30,7 @@
         text-align: center;
       }
       .item {
-        width: 80%;
+        width: 90%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -43,7 +46,7 @@
         width: 100px;
       }
       .subtotal {
-        width: 80%;
+        width: 90%;
         margin: auto;
         text-align: end;
         padding: 20px 0px;
@@ -55,13 +58,15 @@
         }
         .item span {
           width: 45px;
+          text-align: center;
         }
         .item span:nth-child(3) {
-          width: 90px;
+          width: 100px;
           text-align: center;
         }
         .item span:nth-child(4) {
           width: 70px;
+          text-align: center;
         }
       }
     </style>
